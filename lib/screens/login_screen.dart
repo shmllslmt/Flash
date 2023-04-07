@@ -27,6 +27,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {},
+              keyboardType: TextInputType.emailAddress,
+              //TODO: Step 16 - Extract the InputDecoration code and add it to constants.dart by naming it kTextFieldDecoration
+              //TODO: Step 17 - Use the copyWith() method to customise the hintText
               decoration: InputDecoration(
                 hintText: 'Enter your email',
                 contentPadding:
@@ -47,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 8.0),
             TextField(
               onChanged: (value) {},
+              obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Enter your password',
                 contentPadding:
@@ -72,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.lightBlueAccent,
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
+                  //TODO: Step 26 - Sign In with Email and Password, then if successful, navigate to the ChatScreen
                   onPressed: () {},
                   minWidth: 200.0,
                   height: 42.0,

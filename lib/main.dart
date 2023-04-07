@@ -17,7 +17,9 @@ class FlashChat extends StatelessWidget {
           bodyLarge: TextStyle(color: Colors.black54),
         )
       ),
+      //This defines the route it should start with
       initialRoute: WelcomeScreen.id,
+      //This defines the available named routes and the widgets to build when navigating to those routes
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

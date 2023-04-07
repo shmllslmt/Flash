@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//TODO: Step 20 - Import firebase_auth.dart
 
 class RegistrationScreen extends StatefulWidget {
   static String id = 'registration_screen';
@@ -8,6 +9,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  //TODO: Step 21 - Create a private Firebase instance
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
+              //TODO: Step 18 - Receive email value
               onChanged: (value) {},
+              keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 hintText: 'Enter your email',
                 contentPadding:
@@ -46,7 +50,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             SizedBox(height: 8.0),
             TextField(
+              //TODO: Step 19 - Receive password value
               onChanged: (value) {},
+              obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Enter your password',
                 contentPadding:
@@ -72,6 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 color: Colors.blueAccent,
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
+                  //TODO: Step 22 - Create User with Email and Password, then if successful, navigate to the ChatScreen
                   onPressed: () {},
                   minWidth: 200.0,
                   height: 42.0,
