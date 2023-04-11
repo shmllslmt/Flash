@@ -1,4 +1,6 @@
+import 'package:flash/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flash/components/rounded_button.dart';
 //TODO: Step 20 - Import firebase_auth.dart
 
 class RegistrationScreen extends StatefulWidget {
@@ -74,23 +76,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ),
             SizedBox(height: 24.0),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  //TODO: Step 22 - Create User with Email and Password, then if successful, navigate to the ChatScreen
-                  onPressed: () {},
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+            RoundedButton(
+              color: Colors.blueAccent,
+              //TODO: Step 22 - Create User with Email and Password, then if successful, navigate to the ChatScreen
+              onPressed: () {
+                Navigator.pushNamed(context, ChatScreen.id);
+              },
+              label: 'Register',
             ),
           ],
         ),
