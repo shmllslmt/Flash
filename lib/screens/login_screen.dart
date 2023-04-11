@@ -21,17 +21,20 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Hero(
-              tag: 'logo',
-              child: Container(
-                height: 200.0,
-                child: Image.asset('images/logo.png'),
+            Flexible(
+              child: Hero(
+                tag: 'logo',
+                child: Container(
+                  height: 200.0,
+                  child: Image.asset('images/logo.png'),
+                ),
               ),
             ),
             SizedBox(
               height: 48.0,
             ),
             TextField(
+              style: TextStyle(color: Colors.black54),
               onChanged: (value) {},
               keyboardType: TextInputType.emailAddress,
               //Use the copyWith() method to customise the hintText
@@ -41,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 8.0),
             TextField(
+              style: TextStyle(color: Colors.black54),
               onChanged: (value) {},
               obscureText: true,
               decoration: kTextInputFieldDecoration.copyWith(
