@@ -42,7 +42,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
-              style: TextStyle(color: Colors.black54),
+              style: TextStyle(color: Colors.black),
               //Receive email value
               onChanged: (value) {
                 email = value;
@@ -53,7 +53,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             SizedBox(height: 8.0),
             TextField(
-              style: TextStyle(color: Colors.black54),
+              style: TextStyle(color: Colors.black),
               //Receive password value
               onChanged: (value) {
                 password = value;

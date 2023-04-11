@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flash/constants.dart';
 
@@ -9,7 +10,9 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  //TODO: Step 23 - Create another private FirebaseAuth instance
+  //Create another private FirebaseAuth instance
+  final _auth = FirebaseAuth.instance;
+
   //TODO: Step 29 - Create a Firestore instance
   //TODO: Step 34 - Create a TextEditingController
 
@@ -24,9 +27,13 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: [
           IconButton(
-            //TODO: Step 27 - Sign Out
-            //TODO: Step 28 - Pop back to previous screen
-            onPressed: () {},
+            onPressed: () {
+              //Sign Out
+              _auth.signOut();
+
+              //Pop back to previous screen
+              Navigator.pop(context);
+            },
             icon: Icon(Icons.logout),
           ),
         ],
