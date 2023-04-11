@@ -9,7 +9,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  //TODO: Step 23 - Create another private Firebase instance
+  //TODO: Step 23 - Create another private FirebaseAuth instance
   //TODO: Step 29 - Create a Firestore instance
   //TODO: Step 34 - Create a TextEditingController
 

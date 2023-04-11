@@ -15,7 +15,8 @@ class FlashChat extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
           bodyLarge: TextStyle(color: Colors.black54),
-        )
+          bodyMedium: TextStyle(color: Colors.black54),
+        ),
       ),
       //This defines the route it should start with
       initialRoute: WelcomeScreen.id,
