@@ -28,7 +28,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void getCurrentUser() {
     final user = _auth.currentUser;
 
-    if(user != null) {
+    if (user != null) {
       loggedInUser = user;
 
       print(loggedInUser!.email);
@@ -66,35 +66,44 @@ class _ChatScreenState extends State<ChatScreen> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             //Create a StreamBuilder<QuerySnapshot<Map<String, dynamic>>> widget
             StreamBuilder(
               //For the stream property, _firestore.collection('messages').orderBy('timestamp').snapshots()
-              stream: _firestore.collection('messages').orderBy('timestamp').snapshots(),
+              stream: _firestore
+                  .collection('messages')
+                  .orderBy('timestamp')
+                  .snapshots(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if(!snapshot.hasData) {
+                if (!snapshot.hasData) {
                   //If snapshot has no data, return a CircularProgressIndicator
                   return Container(
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 3),
                     child: CircularProgressIndicator(
                       color: Colors.lightBlueAccent,
                     ),
                   );
-                }
-                  else {
+                } else {
                   //If snapshot has data, create a list of Text widgets - the Text widgets will contain the messages, then return a ListView with the list of Text widgets as children
-                  var messages = snapshot.data.docs;
-                  List<Text> messageWidgets = [];
+                  var messages = snapshot.data.docs.reversed;
+                  List<MessageBubble> messageWidgets = [];
 
-                  for(var message in messages) {
+                  for (var message in messages) {
                     final messageText = message.data()['text'];
                     final messageSender = message.data()['sender'];
+                    final me = loggedInUser!.email;
 
-                    final messageWidget = Text('$messageText from $messageSender', style: TextStyle(color: Colors.white),);
-                    messageWidgets.add(messageWidget);
+                    final messageBubble = MessageBubble(
+                      messageSender: messageSender,
+                      messageText: messageText,
+                      isMe: me == messageSender,
+                    );
+                    messageWidgets.add(messageBubble);
                   }
                   return Expanded(
                     child: ListView(
+                      reverse: true,
                       children: messageWidgets,
                     ),
                   );
@@ -144,18 +153,26 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class MessageBubble extends StatelessWidget {
+  final String messageSender;
+  final String messageText;
+  final bool isMe;
+
+  MessageBubble(
+      {required this.messageSender,
+      required this.messageText,
+      required this.isMe});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Text(
-            '',
+            messageSender,
             style: TextStyle(
-              color: Colors.black38,
+              color: Colors.white70,
               fontSize: 10.0,
             ),
           ),
@@ -163,19 +180,15 @@ class MessageBubble extends StatelessWidget {
             height: 3.0,
           ),
           Material(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30.0),
-              bottomLeft: Radius.circular(30.0),
-              bottomRight: Radius.circular(30.0),
-            ),
+            borderRadius: isMe ? kMyMessageBubble : kYourMessageBubble,
             elevation: 5.0,
-            color: Colors.lightBlueAccent,
+            color: isMe ? Colors.lightBlueAccent : Colors.lightBlue.shade100,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: Text(
-                '',
+                messageText,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: isMe ? Colors.white : Colors.black45,
                   fontSize: 15.0,
                 ),
               ),
